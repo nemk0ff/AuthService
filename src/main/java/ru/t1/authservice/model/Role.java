@@ -24,7 +24,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Role {
+public final class Role implements MyEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)

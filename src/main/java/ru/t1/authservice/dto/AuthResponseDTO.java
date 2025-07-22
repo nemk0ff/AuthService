@@ -1,7 +1,9 @@
 package ru.t1.authservice.dto;
 
+import java.util.List;
+
 public record AuthResponseDTO(
-    String[] role,
+    List<String> roles,
     String token
 ) {
 }

@@ -9,7 +9,7 @@ public record UserResponseDTO(
     Long id,
 
     @Schema(description = "Email", example = "example@senla.ru")
-    String email,
+    String username,
 
     @Schema(description = "Роль", example = "USER")
     Role role) {

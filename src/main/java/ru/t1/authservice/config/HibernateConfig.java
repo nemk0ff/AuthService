@@ -39,7 +39,7 @@ public class HibernateConfig {
   public LocalSessionFactoryBean sessionFactory(DataSource dataSource) {
     LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
     sessionFactory.setDataSource(dataSource);
-    sessionFactory.setPackagesToScan("ru.senla.socialnetwork.model");
+    sessionFactory.setPackagesToScan("ru.t1.authservice.model");
 
     Properties props = new Properties();
     props.put(Environment.CURRENT_SESSION_CONTEXT_CLASS,

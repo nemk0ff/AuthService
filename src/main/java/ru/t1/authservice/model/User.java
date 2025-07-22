@@ -9,6 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 import java.util.HashSet;
 import java.util.Set;
@@ -25,7 +26,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class User {
+@NamedQuery(name = "User.findByEmail",
+    query = "FROM User WHERE username = :username")
+public final class User implements MyEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,9 +37,6 @@ public class User {
 
   @Column(name = "username", nullable = false, unique = true)
   private String username;
-
-  @Column(name = "email", nullable = false, unique = true)
-  private String email;
 
   @Column(name = "password", nullable = false)
   private String password;

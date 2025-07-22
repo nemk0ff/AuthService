@@ -19,7 +19,7 @@ public class JwtUtils {
   public static String generateToken(String username, String role) {
     return Jwts.builder()
         .subject(username)
-        .claim("role", role)
+        .claim("roles", role)
         .issuedAt(Date.from(Instant.now()))
         .expiration(Date.from(Instant.now().plusMillis(EXPIRATION_TIME_MS)))
         .signWith(SECRET_KEY, ALGORITHM)

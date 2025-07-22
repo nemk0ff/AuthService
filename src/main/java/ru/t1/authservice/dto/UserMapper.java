@@ -3,9 +3,7 @@ package ru.t1.authservice.dto;
 import java.util.List;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
-import ru.senla.socialnetwork.dto.auth.RegisterDTO;
-import ru.senla.socialnetwork.dto.users.UserResponseDTO;
-import ru.senla.socialnetwork.model.users.User;
+import ru.t1.authservice.model.User;
 
 @Mapper
 public interface UserMapper {

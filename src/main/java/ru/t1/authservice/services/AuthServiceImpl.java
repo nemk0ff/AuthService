@@ -1,6 +1,5 @@
 package ru.t1.authservice.services;
 
-import java.time.ZonedDateTime;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,6 +17,7 @@ import ru.t1.authservice.exceptions.EmailAlreadyExistsException;
 import ru.t1.authservice.exceptions.IllegalPasswordException;
 import ru.t1.authservice.exceptions.UserNotRegisteredException;
 import ru.t1.authservice.model.User;
+import ru.t1.authservice.repository.UserDao;
 import ru.t1.authservice.security.JwtUtils;
 
 @Slf4j
@@ -31,8 +31,8 @@ public class AuthServiceImpl implements AuthService {
   @Transactional
   @Override
   public AuthResponseDTO getAuthResponse(AuthRequestDTO requestDTO) {
-    log.info("Проверяем логин и пароль пользователя {}...", requestDTO.email());
-    UserDetails correctDetails = loadUserByUsername(requestDTO.email());
+    log.info("Проверяем логин и пароль пользователя {}...", requestDTO.username());
+    UserDetails correctDetails = loadUserByUsername(requestDTO.username());
 
     if (!passwordEncoder.matches(requestDTO.password(), correctDetails.getPassword())) {
       throw new IllegalPasswordException();
@@ -41,7 +41,7 @@ public class AuthServiceImpl implements AuthService {
     String role = correctDetails.getAuthorities()
         .iterator().next()
         .getAuthority();
-    String token = JwtUtils.generateToken(requestDTO.email(), role);
+    String token = JwtUtils.generateToken(requestDTO.username(), role);
     log.info("Токен сгенерирован успешно.");
     return new AuthResponseDTO(List.of(role), token);
   }
@@ -49,30 +49,30 @@ public class AuthServiceImpl implements AuthService {
   @Transactional
   @Override
   public UserResponseDTO register(RegisterDTO regDTO) {
-    log.info("Регистрируем нового пользователя {}...", regDTO.email());
-    if (userDao.findByEmail(regDTO.email()).isPresent()) {
-      throw new EmailAlreadyExistsException(regDTO.email());
+    log.info("Регистрируем нового пользователя {}...", regDTO.username());
+    if (userDao.findByEmail(regDTO.username()).isPresent()) {
+      throw new EmailAlreadyExistsException(regDTO.username());
     }
     User user = UserMapper.INSTANCE.toUser(regDTO);
     user.setPassword(passwordEncoder.encode(regDTO.password()));
 
     user = userDao.saveOrUpdate(user);
-    log.info("Пользователь {} успешно зарегистрирован.", regDTO.email());
+    log.info("Пользователь {} успешно зарегистрирован.", regDTO.username());
     return UserMapper.INSTANCE.toUserResponseDTO(user);
   }
 
   @Override
   @Transactional(readOnly = true)
   public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-    log.debug("Поиск пользователя по email: {}", email);
+    log.debug("Поиск пользователя по username: {}", email);
     User user = userDao.findByEmail(email).orElseThrow(
         () -> new UserNotRegisteredException(email));
 
     log.debug("Пользователь найден: {}", user);
     return org.springframework.security.core.userdetails.User.builder()
-        .username(user.getEmail())
+        .username(user.getUsername())
         .password(user.getPassword())
-        .roles(user.getRole().name())
+        .roles(String.valueOf(user.getRoles()))
         .build();
   }
 }
