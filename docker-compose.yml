@@ -41,7 +41,7 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U postgres -d senlaproject" ]
+      test: [ "CMD-SHELL", "pg_isready -U postgres -d authservice" ]
       interval: 5s
       timeout: 5s
       retries: 10

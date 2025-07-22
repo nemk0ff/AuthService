@@ -2,6 +2,7 @@ package ru.t1.authservice.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.List;
+import ru.t1.authservice.model.Role;
 
 @Schema(description = "Ответ с данными аутентификации")
 public record AuthResponseDTO(

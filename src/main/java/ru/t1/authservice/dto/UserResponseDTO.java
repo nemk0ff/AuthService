@@ -16,5 +16,5 @@ public record UserResponseDTO(
     String username,
 
     @Schema(description = "Роль", example = "USER")
-    List<Role> roles) {
+    List<String> roles) {
 }

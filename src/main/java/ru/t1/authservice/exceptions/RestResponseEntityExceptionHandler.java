@@ -94,7 +94,8 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
 
   @ExceptionHandler({
       AuthenticationException.class,
-      UserNotRegisteredException.class
+      UserNotRegisteredException.class,
+      EmailAlreadyExistsException.class
   })
   protected ResponseEntity<ProblemDetail> handleAuthenticationException(
       Exception ex, WebRequest request) {

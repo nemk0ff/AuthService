@@ -23,7 +23,7 @@ public class UserDaoImpl extends HibernateAbstractDao<User> implements UserDao {
       Optional<User> user = Optional.ofNullable(
           sessionFactory.getCurrentSession()
               .createNamedQuery("User.findByEmail", User.class)
-              .setParameter("username", email)
+              .setParameter("email", email)
               .uniqueResult());
       if (user.isPresent()) {
         log.info("Найден пользователь с username {}: id={}", email, user.get().getId());

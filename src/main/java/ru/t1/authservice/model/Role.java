@@ -40,4 +40,11 @@ public final class Role implements MyEntity {
 
   @ManyToMany(mappedBy = "roles")
   private Set<User> users = new HashSet<>();
+
+  @Override
+  public String toString() {
+    return "Role{" +
+        "name=" + name +
+        '}';
+  }
 }
