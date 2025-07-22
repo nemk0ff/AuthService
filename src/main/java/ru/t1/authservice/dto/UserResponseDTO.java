@@ -1,6 +1,7 @@
 package ru.t1.authservice.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.util.List;
 import ru.t1.authservice.model.Role;
 
 @Schema(description = "Данные зарегистрированного пользователя")
@@ -12,5 +13,5 @@ public record UserResponseDTO(
     String username,
 
     @Schema(description = "Роль", example = "USER")
-    Role role) {
+    List<Role> roles) {
 }
