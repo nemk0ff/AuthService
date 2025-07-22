@@ -6,10 +6,13 @@ import jakarta.validation.constraints.Size;
 
 @Schema(description = "Данные для регистрации нового пользователя")
 public record RegisterDTO(
-    @Schema(description = "Email", example = "example@senla.ru")
-    @NotBlank(message = "email не должен быть пустым")
+    @Schema(description = "Username", example = "ivanov_user")
+    @NotBlank(message = "username не должен быть пустым")
     String username,
 
+    @Schema(description = "Email", example = "example@senla.ru")
+    @NotBlank(message = "email не должен быть пустым")
+    String email,
 
     @Schema(description = "Пароль", example = "password123")
     @NotBlank(message = "пароль не должен быть пустым")

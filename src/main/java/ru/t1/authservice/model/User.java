@@ -27,7 +27,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 @NamedQuery(name = "User.findByEmail",
-    query = "FROM User WHERE username = :username")
+    query = "FROM User WHERE email = :email")
 public final class User implements MyEntity {
 
   @Id
@@ -37,6 +37,9 @@ public final class User implements MyEntity {
 
   @Column(name = "username", nullable = false, unique = true)
   private String username;
+
+  @Column(name = "email", nullable = false, unique = true)
+  private String email;
 
   @Column(name = "password", nullable = false)
   private String password;

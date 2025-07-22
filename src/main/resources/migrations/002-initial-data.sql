@@ -1,19 +1,20 @@
+-- 002-initial-data.sql
 -- Вставка 10 тестовых пользователей с хешированными паролями (используется bcrypt)
 -- Пароли для всех пользователей: ""
 
-INSERT INTO users (password, username)
-VALUES ('$2a$10$Smy9JptsypUyVBHOTMidTeh3pEZ9UA1uoGv6H5yLhqXXdLMkQsTKK', 'admin@example.com'),
-       ('$2a$10$Smy9JptsypUyVBHOTMidTeh3pEZ9UA1uoGv6H5yLhqXXdLMkQsTKK', 'premium1@example.com'),
-       ('$2a$10$Smy9JptsypUyVBHOTMidTeh3pEZ9UA1uoGv6H5yLhqXXdLMkQsTKK', 'premium2@example.com'),
-       ('$2a$10$Smy9JptsypUyVBHOTMidTeh3pEZ9UA1uoGv6H5yLhqXXdLMkQsTKK', 'guest1@example.com'),
-       ('$2a$10$Smy9JptsypUyVBHOTMidTeh3pEZ9UA1uoGv6H5yLhqXXdLMkQsTKK', 'guest2@example.com'),
-       ('$2a$10$Smy9JptsypUyVBHOTMidTeh3pEZ9UA1uoGv6H5yLhqXXdLMkQsTKK', 'guest3@example.com'),
-       ('$2a$10$Smy9JptsypUyVBHOTMidTeh3pEZ9UA1uoGv6H5yLhqXXdLMkQsTKK', 'mixed1@example.com'),
-       ('$2a$10$Smy9JptsypUyVBHOTMidTeh3pEZ9UA1uoGv6H5yLhqXXdLMkQsTKK', 'mixed2@example.com'),
-       ('$2a$10$Smy9JptsypUyVBHOTMidTeh3pEZ9UA1uoGv6H5yLhqXXdLMkQsTKK', 'test1@example.com'),
-       ('$2a$10$Smy9JptsypUyVBHOTMidTeh3pEZ9UA1uoGv6H5yLhqXXdLMkQsTKK', 'test2@example.com');
+INSERT INTO users (password, username, email)
+VALUES ('$2a$10$Smy9JptsypUyVBHOTMidTeh3pEZ9UA1uoGv6H5yLhqXXdLMkQsTKK', 'admin_user', 'admin@example.com'),
+       ('$2a$10$Smy9JptsypUyVBHOTMidTeh3pEZ9UA1uoGv6H5yLhqXXdLMkQsTKK', 'premium_user1', 'premium1@example.com'),
+       ('$2a$10$Smy9JptsypUyVBHOTMidTeh3pEZ9UA1uoGv6H5yLhqXXdLMkQsTKK', 'premium_user2', 'premium2@example.com'),
+       ('$2a$10$Smy9JptsypUyVBHOTMidTeh3pEZ9UA1uoGv6H5yLhqXXdLMkQsTKK', 'guest_user1', 'guest1@example.com'),
+       ('$2a$10$Smy9JptsypUyVBHOTMidTeh3pEZ9UA1uoGv6H5yLhqXXdLMkQsTKK', 'guest_user2', 'guest2@example.com'),
+       ('$2a$10$Smy9JptsypUyVBHOTMidTeh3pEZ9UA1uoGv6H5yLhqXXdLMkQsTKK', 'guest_user3', 'guest3@example.com'),
+       ('$2a$10$Smy9JptsypUyVBHOTMidTeh3pEZ9UA1uoGv6H5yLhqXXdLMkQsTKK', 'mixed_user1', 'mixed1@example.com'),
+       ('$2a$10$Smy9JptsypUyVBHOTMidTeh3pEZ9UA1uoGv6H5yLhqXXdLMkQsTKK', 'mixed_user2', 'mixed2@example.com'),
+       ('$2a$10$Smy9JptsypUyVBHOTMidTeh3pEZ9UA1uoGv6H5yLhqXXdLMkQsTKK', 'test_user1', 'test1@example.com'),
+       ('$2a$10$Smy9JptsypUyVBHOTMidTeh3pEZ9UA1uoGv6H5yLhqXXdLMkQsTKK', 'test_user2', 'test2@example.com');
 
--- Назначение ролей пользователям
+-- Назначение ролей пользователям (остается без изменений)
 INSERT INTO user_roles (user_id, role_id)
 VALUES
 -- admin_user - администратор

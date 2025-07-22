@@ -10,6 +10,9 @@ public record UserResponseDTO(
     Long id,
 
     @Schema(description = "Email", example = "example@senla.ru")
+    String email,
+
+    @Schema(description = "Username", example = "ivanov_user")
     String username,
 
     @Schema(description = "Роль", example = "USER")
