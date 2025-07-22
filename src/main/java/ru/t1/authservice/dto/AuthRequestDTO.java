@@ -10,7 +10,7 @@ public record AuthRequestDTO(
     @Schema(description = "Email пользователя", example = "example@senla.ru")
     @Email(message = "Вы ввели неверный формат email")
     @NotBlank(message = "Почта не может быть пустой")
-    String email,
+    String username,
 
     @Schema(description = "Пароль", example = "password123", minLength = 8, maxLength = 100)
     @NotBlank(message = "Пароль не может быть пустым")
