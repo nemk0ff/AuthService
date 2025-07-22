@@ -47,4 +47,10 @@ public final class Role implements MyEntity {
         "name=" + name +
         '}';
   }
+
+  public Role(Long id, RoleName name, String description) {
+    this.id = id;
+    this.name = name;
+    this.description = description;
+  }
 }
